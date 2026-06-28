@@ -16,7 +16,7 @@ namespace ExcelTools
         c = 1 << 0, // client
         s = 1 << 1, // server
         e = 1 << 2,
-        All = c + s + e,
+        All = c + s + e,  
     }
     public class ExcelTools
     {
