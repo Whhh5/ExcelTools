@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/wangjiahao/Documents/MyProject/Exceltools/ExcelTools/ExcelTools.csproj": {}
+    "/Users/qiuxiaohui/Documents/UnityProject/RunGame/Misc/ExcelTools/ExcelTools/ExcelTools.csproj": {}
   },
   "projects": {
-    "/Users/wangjiahao/Documents/MyProject/Exceltools/ExcelTools/ExcelTools.csproj": {
+    "/Users/qiuxiaohui/Documents/UnityProject/RunGame/Misc/ExcelTools/ExcelTools/ExcelTools.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/wangjiahao/Documents/MyProject/Exceltools/ExcelTools/ExcelTools.csproj",
+        "projectUniqueName": "/Users/qiuxiaohui/Documents/UnityProject/RunGame/Misc/ExcelTools/ExcelTools/ExcelTools.csproj",
         "projectName": "ExcelTools",
-        "projectPath": "/Users/wangjiahao/Documents/MyProject/Exceltools/ExcelTools/ExcelTools.csproj",
-        "packagesPath": "/Users/wangjiahao/.nuget/packages/",
-        "outputPath": "/Users/wangjiahao/Documents/MyProject/Exceltools/ExcelTools/obj/",
+        "projectPath": "/Users/qiuxiaohui/Documents/UnityProject/RunGame/Misc/ExcelTools/ExcelTools/ExcelTools.csproj",
+        "packagesPath": "/Users/qiuxiaohui/.nuget/packages/",
+        "outputPath": "/Users/qiuxiaohui/Documents/UnityProject/RunGame/Misc/ExcelTools/ExcelTools/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/wangjiahao/.nuget/NuGet/NuGet.Config"
+          "/Users/qiuxiaohui/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -45,6 +45,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             }
           },
           "imports": [
@@ -61,15 +65,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.31, 6.0.31]"
+              "version": "[6.0.25, 6.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[6.0.31, 6.0.31]"
+              "version": "[6.0.25, 6.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.31, 6.0.31]"
+              "version": "[6.0.25, 6.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -77,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.317/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

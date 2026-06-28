@@ -10,8 +10,14 @@
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="7.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Unity.Entities">
+      <HintPath>Lib\Unity.Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

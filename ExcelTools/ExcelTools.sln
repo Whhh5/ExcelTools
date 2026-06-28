@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelTools", "ExcelTools.csproj", "{CEEA75EE-3909-4E08-902A-6B946AB53D1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEEA75EE-3909-4E08-902A-6B946AB53D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEEA75EE-3909-4E08-902A-6B946AB53D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEEA75EE-3909-4E08-902A-6B946AB53D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEEA75EE-3909-4E08-902A-6B946AB53D1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9E914AC-95DE-47E9-916C-B0D6C062A891}
+	EndGlobalSection
+EndGlobal

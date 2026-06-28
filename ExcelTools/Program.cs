@@ -19,15 +19,24 @@ public class Program
 
         var excelTools = new ExcelTools.ExcelTools();
         var exportList = excelTools.GetExportCfgList(excelDir);
-        var exportExcelInfoList = excelTools.GetExportExcelInfoList(exportList, EnExcelSourceType.c);
+
+        var sourceType =
+#if DEBUG
+            EnExcelSourceType.c | EnExcelSourceType.e;
+#else
+            EnExcelSourceType.c;
+#endif
+        var exportExcelInfoList = excelTools.GetExportExcelInfoList(exportList, sourceType);
         var exportCfgList = excelTools.GetExportCfgListData(exportExcelInfoList);
 
         Directory.CreateDirectory(excelDir);
         Directory.CreateDirectory(cfgExportDir);
         Directory.CreateDirectory(classExportDir);
 
+        excelTools.ExportExcelCatalogJsonFile(exportExcelInfoList, cfgExportDir);
         excelTools.ExportExcel2JsonFile(exportCfgList, cfgExportDir);
         excelTools.ExportExcel2CSFile(exportExcelInfoList, classExportDir);
+        excelTools.CreateCfgUtilFile(exportExcelInfoList, classExportDir);
 
         Console.WriteLine($"excel -> {excelDir}");
         Console.WriteLine($"cfg -> {cfgExportDir}");

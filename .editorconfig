@@ -8,3 +8,6 @@ dotnet_diagnostic.CS8604.severity = silent
 
 # CA1051: 不要声明可见实例字段
 dotnet_diagnostic.CA1051.severity = silent
+
+# CS8602: 解引用可能出现空引用。
+dotnet_diagnostic.CS8602.severity = silent

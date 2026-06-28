@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{CEEA75EE-3909-4E08-902A-6B946AB53D1F}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ExcelTools.cs">
+    <Files>
+      <File FileName="ExcelTools.cs" Line="61" Column="38" />
+      <File FileName="Program.cs" Line="21" Column="48" />
+      <File FileName="ExcelUtil.cs" Line="208" Column="59" />
+      <File FileName="ICfg.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ExcelTools">
+            <Node name="ExcelTools">
+              <Node name="ExcelTools.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ExcelTools PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

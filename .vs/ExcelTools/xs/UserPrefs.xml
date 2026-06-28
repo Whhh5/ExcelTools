@@ -1,26 +1,27 @@
 ﻿<Properties StartupConfiguration="{823EDFE3-A1E5-4E33-A7BB-76AEB235C153}|Default">
-  <MonoDevelop.Ide.ItemProperties.ExcelTools PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ExcelTools/ExcelTools.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ExcelTools/Program.cs">
     <Files>
-      <File FileName="ExcelTools/Program.cs" />
-      <File FileName="ExcelTools/ExcelTools.cs" Line="114" Column="14" />
+      <File FileName="ExcelTools/Program.cs" Line="1" Column="1" />
+      <File FileName="ExcelTools/ExcelTools.cs" Line="122" Column="26" />
+      <File FileName="ExcelTools/ResolveExcelJson.cs" />
+      <File FileName="ExcelTools/ExcelUtil.cs" />
+      <File FileName="../../Documents/UnityProject/abb2d/Assets/Abbresources/GameCfg/SkillCfg.json" />
+      <File FileName="ExcelTools/Assets/Scripts/GameCfgCS/SkillCfg.cs" />
+      <File FileName="ExcelTools/Assets/Abbresources/GameCfgJson/SkillCfg.json" />
     </Files>
     <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="ExcelTools" expanded="True">
-            <Node name="ExcelTools" expanded="True">
-              <Node name="ExcelTools.cs" selected="True" />
-            </Node>
-          </Node>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>typeof(string)</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ExcelTools PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

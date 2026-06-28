@@ -3,11 +3,12 @@ using OfficeOpenXml;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
+using Unity.Entities;
 
 namespace ExcelTools
 {
-	public static class ExcelUtil
-	{
+    public static class ExcelUtil
+    {
         public static string GetExecutingDir()
         {
             var curAssembly = Assembly.GetExecutingAssembly();
@@ -20,6 +21,12 @@ namespace ExcelTools
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             return excelPackage;
+        }
+        public static bool IsValid(this ExcelWorksheet sheet, int row)
+        {
+            var value = sheet.GetValue<string>(row, 1);
+            var isvalid = string.IsNullOrWhiteSpace(value);
+            return !isvalid;
         }
         public static Type CreateDynamicType(string className, List<string> fieldNameList, List<string> fieldTypeList)
         {
@@ -53,6 +60,27 @@ namespace ExcelTools
             Type dynamicType = classBuilder.CreateType();
             return dynamicType;
         }
+        public static Type Key2EcsType(string key)
+        {
+            return key switch
+            {
+                "int32" => typeof(int),
+                "int64" => typeof(long),
+                "int32[]" => typeof(BlobAssetReference<BlobArray<int>>),
+                "int64[]" => typeof(BlobAssetReference<BlobArray<long>>),
+                "uint32" => typeof(uint),
+                "uint64" => typeof(ulong),
+                "uint32[]" => typeof(BlobAssetReference<BlobArray<uint>>),
+                "uint64[]" => typeof(BlobAssetReference<BlobArray<ulong>>),
+                "float" => typeof(float),
+                "float[]" => typeof(BlobAssetReference<BlobArray<float>>),
+                "double" => typeof(double),
+                "double[]" => typeof(BlobAssetReference<BlobArray<double>>),
+                "string" => typeof(string),
+                "string[]" => typeof(BlobAssetReference<BlobArray<BlobString>>),
+                _ => null,
+            };
+        }
         public static Type Key2Type(string key)
         {
             return key switch
@@ -74,7 +102,76 @@ namespace ExcelTools
                 _ => null,
             };
         }
-        public static string CreateCshapFileContent(string name, string csDesc, List<string> fieldList, List<string> fieldTypeList, List<string> descList)
+        public static string GetListType(string type)
+        {
+            return $"System.Collections.Generic.List<{type}>";
+        }
+        public static string GetDictionaryType(string type1, string type2)
+        {
+            return $"System.Collections.Generic.Dictionary<{type1}, {type2}>";
+        }
+
+        public static string CreateCshapFileContentEcs(
+            string name
+            , string csDesc
+            , List<string> fieldList
+            , List<string> fieldTypeList
+            , List<string> descList
+            , List<List<CfgKeyInfo>> keyList)
+        {
+            var strBuilder = new StringBuilder("");
+            strBuilder.AppendLine($"// {csDesc}");
+            strBuilder.AppendLine($"public class Ecs{name} : ICfg");
+            strBuilder.AppendLine("{");
+            strBuilder.AppendLine($"\tprivate {name}() {{}}");
+
+            for (int i = 0; i < fieldList.Count; i++)
+            {
+                var fieldName = fieldList[i];
+                var typeStr = fieldTypeList[i];
+                var fieldType = Key2EcsType(typeStr);
+                var descStr = descList[i];
+                if (string.IsNullOrEmpty(fieldName) || fieldType == null)
+                {
+                    Console.Error.WriteLine($"生成类字段失败 name:{fieldName}, typeStr:{typeStr}, type:{fieldType}");
+                    continue;
+                }
+
+                strBuilder.AppendLine($"\t// {descStr}");
+                strBuilder.AppendLine($"public {fieldType} {fieldName};");
+            }
+            for (int i = 0; i < keyList.Count; i++)
+            {
+                var keyInfoList = keyList[i];
+                var count = keyInfoList.Count;
+                if (count != 1)
+                    continue;
+                var returnType = "";
+                var returnStr = "";
+                if (count == 1)
+                {
+                    var info = keyInfoList[0];
+                    var type = ExcelUtil.Key2EcsType(info.fieldType);
+                    returnType += $"{type}";
+                    returnStr += info.fieldName;
+                }
+
+                strBuilder.AppendLine($"\tpublic {returnType} GetID()");
+                strBuilder.AppendLine($"\t{{");
+                strBuilder.AppendLine($"\t\treturn {returnStr};");
+                strBuilder.AppendLine($"\t}}");
+            }
+            strBuilder.AppendLine("}");
+            var result = strBuilder.ToString();
+            return result;
+        }
+        public static string CreateCshapFileContent(
+            string name
+            , string csDesc
+            , List<string> fieldList
+            , List<string> fieldTypeList
+            , List<string> descList
+            , List<List<CfgKeyInfo>> keyList)
         {
             var strBuilder = new StringBuilder("");
             strBuilder.AppendLine($"// {csDesc}");
@@ -93,10 +190,52 @@ namespace ExcelTools
                     Console.Error.WriteLine($"生成类字段失败 name:{fieldName}, typeStr:{typeStr}, type:{fieldType}");
                     continue;
                 }
-                strBuilder.AppendLine($"\t// {descStr}");
-                strBuilder.AppendLine($"\tpublic readonly {fieldType} {fieldName};");
-            }
 
+                strBuilder.AppendLine($"\t// {descStr}");
+                strBuilder.Append($"\t[Newtonsoft.Json.JsonProperty()] ");
+                strBuilder.AppendLine($"public readonly {fieldType} {fieldName};");
+            }
+            for (int i = 0; i < keyList.Count; i++)
+            {
+                var keyInfoList = keyList[i];
+                var count = keyInfoList.Count;
+
+                var returnType = "";
+                var returnStr = "";
+                if (count == 1)
+                {
+                    var info = keyInfoList[0];
+                    var type = ExcelUtil.Key2Type(info.fieldType);
+                    returnType += $"{type}";
+                    returnStr += info.fieldName;
+                }
+                else
+                {
+                    returnType += "(";
+                    returnStr += "(";
+                    for (int j = 0; j < count; j++)
+                    {
+                        var info = keyInfoList[j];
+                        var type = ExcelUtil.Key2Type(info.fieldType);
+                        returnType += $"{type} {info.fieldName}";
+                        returnStr += $"{info.fieldName}";
+                        if (j != count - 1)
+                        {
+                            returnType += ",";
+                            returnStr += ",";
+                        }
+                    }
+                    returnStr += ");";
+                    returnType += ")";
+                }
+                if (i == 0)
+                    strBuilder.AppendLine($"\tpublic {returnType} GetID()");
+                else
+                    strBuilder.AppendLine($"\tpublic {returnType} GetID_{i}()");
+                strBuilder.AppendLine($"\t{{");
+                strBuilder.AppendLine($"\t\treturn {returnStr};");
+                strBuilder.AppendLine($"\t}}");
+            }
             strBuilder.AppendLine("}");
             var result = strBuilder.ToString();
             return result;
