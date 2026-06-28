@@ -3,18 +3,14 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="ExcelTools/ExcelTools.cs">
     <Files>
       <File FileName="ExcelTools/Program.cs" Line="27" Column="33" />
-      <File FileName="ExcelTools/ExcelTools.cs" Line="12" Column="21" />
+      <File FileName="ExcelTools/ExcelTools.cs" Line="19" Column="27" />
       <File FileName="ExcelTools/ResolveExcelJson.cs" />
       <File FileName="ExcelTools/ExcelUtil.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ExcelTools">
-            <Node name="ExcelTools" expanded="True">
-              <Node name="ExcelTools.cs" selected="True" />
-            </Node>
-          </Node>
+          <Node name="ExcelTools" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
